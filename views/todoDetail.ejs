@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Detail</title>
+</head>
+<body>
+    <h1>Todo Details</h1>
+    <% if (todo) { %>
+        <div>
+            <h2><%= todo.name %></h2>
+            <p><strong>Completed:</strong> <%= todo.completed %></p>
+            <p><strong>Created Date:</strong> <%= todo.created_date.toISOString() %></p>
+        </div>
+    <% } else { %>
+        <p>Todo not found.</p>
+    <% } %>
+</body>
+</html>

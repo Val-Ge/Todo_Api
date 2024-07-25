@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>To Do!</h1>
+    <div class="container">
+        <div class="row">
+            <% if (todos && todos.length > 0) { %>
+                <% todos.forEach((todo, index) => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="container">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= todo.name %></h5>
+                                <p class="card-text">Name: <%= todo.name %></p>
+                                <p class="card-text">Completed: <%= todo.completed %></p>
+                                <p class="card-text">Created Date: <%= todo.created_date %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No todos available.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
+
