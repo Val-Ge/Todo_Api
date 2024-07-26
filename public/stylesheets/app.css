@@ -1,91 +1,78 @@
-/* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Patrick Hand', cursive; /* Updated to handwritten style */
+    background: url('/uploads/notebook.jpg') no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .container {
     max-width: 600px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 20px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.0);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
 }
 
-header h1 {
-    margin: 0;
-    color: #333;
+h1 {
+    text-align: center;
+    font-size: 4em;
 }
 
-#add-todo-form {
+form {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 #todo-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    font-size: 1em;
+    
 }
 
 button {
     padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    background-color: #007bff;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-#todo-list {
+ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
-#todo-list li {
+li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s;
+    cursor: pointer; /* Change cursor to pointer for clickable items */
 }
 
-#todo-list li.completed {
-    background-color: #d4edda;
+li.completed span {
     text-decoration: line-through;
+    color: #888;
 }
 
-#todo-list li:hover {
-    background-color: #f1f1f1;
+@media (max-width: 600px) {
+li span {
+    font-size: 2em; /* Adjust this value to your preference */
+    font-weight: bold;
+}
 }
 
 .delete-btn {
     background: none;
     border: none;
-    color: #dc3545;
-    font-size: 18px;
+    color: red;
+    font-size: 1.2em;
     cursor: pointer;
-}
-
-.delete-btn:hover {
-    color: #c82333;
 }

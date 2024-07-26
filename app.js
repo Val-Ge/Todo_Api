@@ -49,6 +49,16 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
+app.patch('/api/todos/:id', (req, res) => {
+    const { id } = req.params;
+    const { completed } = req.body;
+
+    // Update the todo item in the database
+    Todo.findByIdAndUpdate(id, { completed }, { new: true })
+        .then(todo => res.json(todo))
+        .catch(err => res.status(500).json({ error: 'An error occurred' }));
+}); 
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
+    <!-- <script src="scripts/main.js" defer></script> -->
+    <!-- Optional: Include jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -19,46 +22,13 @@
         <ul id="todo-list">
             <% todos.forEach(todo => { %>
                 <li data-id="<%= todo._id %>" class="<%= todo.completed ? 'completed' : '' %>">
-                    <span><%= todo.name %></span>
+                    <span><strong><%= todo.name %></strong></span>
                     <button class="delete-btn">✖</button>
                 </li>
             <% }) %>
         </ul>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#add-todo-form').on('submit', function(event) {
-                event.preventDefault();
-                const newTodo = $('#todo-input').val();
-                $.ajax({
-                    url: '/api/todos',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ name: newTodo }),
-                    success: function(todo) {
-                        $('#todo-list').append(
-                            `<li data-id="${todo._id}">
-                                <span>${todo.name}</span>
-                                <button class="delete-btn">✖</button>
-                            </li>`
-                        );
-                        $('#todo-input').val('');
-                    }
-                });
-            });
-
-            $('#todo-list').on('click', '.delete-btn', function() {
-                const todoId = $(this).closest('li').data('id');
-                $.ajax({
-                    url: `/api/todos/${todoId}`,
-                    method: 'DELETE',
-                    success: function() {
-                        $(`li[data-id="${todoId}"]`).remove();
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- Include the external JavaScript file -->
+    <script src="/js/app.js"></script>
 </body>
 </html>
