@@ -1,8 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import todoRoutes from './routes/todos.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import todoRoutes from './routes/todos.js'; // Updated import path
 import Todo from './models/todo.js'; // Ensure this path is correct
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,11 +23,11 @@ mongoose.connect('mongodb://localhost:27017/todoApi', {
 .catch(err => console.log(err));
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // In case you're sending JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // In case you're sending JSON
 
 // Serve static files (optional)
-// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Use todo routes
 app.use('/api/todos', todoRoutes);
@@ -36,6 +41,12 @@ app.get('/', async (req, res) => {
         console.error('Error fetching todos:', error);
         res.status(500).send('Internal Server Error');
     }
+});
+
+// Catch-all error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
 
 app.listen(port, () => {
